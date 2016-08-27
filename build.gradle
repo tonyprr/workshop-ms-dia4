@@ -14,7 +14,8 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-
+//Medir la coertura del codigo en la ejecucion de prueas
+apply plugin: 'jacoco'
 jar {
 	baseName = 'dia4'
 	version = '0.0.1-SNAPSHOT'
@@ -39,3 +40,10 @@ eclipse {
 		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
 	}
 }
+
+jacoco {
+    toolVersion = "0.7.7.201606060606"
+}
+
+//esto le indica a Gradle que realice el reporte de covertura en las pruevas
+check.dependsOn jacocoTestReport
