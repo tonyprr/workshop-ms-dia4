@@ -14,9 +14,14 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+
+//Plugins para analisis estatico de codigo
 apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+
 //Medir la coertura del codigo en la ejecucion de prueas
 apply plugin: 'jacoco'
+
 jar {
 	baseName = 'dia4'
 	version = '0.0.1-SNAPSHOT'
@@ -48,3 +53,10 @@ jacoco {
 
 //esto le indica a Gradle que realice el reporte de covertura en las pruevas
 check.dependsOn jacocoTestReport
+
+tasks.withType(FindBugs) {
+  reports {
+    xml.enabled true
+    html.enabled false
+  }
+}
